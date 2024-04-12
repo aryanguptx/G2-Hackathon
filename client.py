@@ -1,7 +1,7 @@
 #Import all of joel's code
-from g2ApiResponse import getReviewResults
+from Utilities.g2ApiResponse import getReviewResults
 #Call function with parameter: Json output file path
-review_list = getReviewResults("g2ApiRespone.json")
+review_list = getReviewResults("Utilities/g2ApiRespone.json")
 #Response is a List of 2 Dictionaries
 #print(type(review_list))
 for dictionary in review_list:
