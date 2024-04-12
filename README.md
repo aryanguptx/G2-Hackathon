@@ -4,7 +4,7 @@ This project aims to analyze customer reviews for products and services from G2,
 
 ## Overview
 
-The project utilizes the G2 API to fetch reviews for a particular product. It then employs a keyword extraction model from Hugging Face (`ml6team/keyphrase-extraction-distilbert-inspec`) to extract keywords from each review. The extracted keywords are then used as a corpus to calculate TF-IDF scores, which help determine the importance of various keywords and identify the most sought-after feature sets.
+The project utilizes the G2 API to fetch reviews for a particular product. It then employs a keyword extraction model from Hugging Face (`ml6team/keyphrase-extraction-distilbert-inspec`) to extract keywords from each review. These extracted keywords are then lemmatized, a process that reduces each word to its base or root form, to ensure consistency and accuracy. These lemmatized keywords are used as a corpus to calculate TF-IDF scores, which help determine the importance of various keywords and identify the most sought-after feature sets.
 
 ## Repository Structure
 
@@ -12,6 +12,7 @@ The project utilizes the G2 API to fetch reviews for a particular product. It th
   - `KeyPhraseExtract.py`: Contains the code for keyword extraction using the Hugging Face model.
   - `g2ApiResponse.json`: Sample JSON response from the G2 API.
   - `g2ApiResponse.py`: Code for handling the API response and data processing.
+  - `lemmatizer.py`: Code for lemmatizing the extracted keywords.
   - `tf_idf.py`: Implementation of the TF-IDF algorithm for keyword importance calculation.
 - `client.py`: The main entry point of the application, orchestrating the various utilities.
 - `requirements.txt`: List of required Python packages and dependencies.
