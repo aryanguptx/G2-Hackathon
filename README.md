@@ -28,14 +28,13 @@ The project utilizes the G2 API to fetch reviews for a particular product. It th
 
 ## Set Up the Environment
 
-Run the `setup.sh` script to create a virtual environment, activate it, and install the required dependencies:
+Run the `setup.sh` script to create a virtual environment, activate it, and install the required dependencies.
+Before running setup.sh, replace "Your Key" with your G@ API key.
 
 ```
 $ chmod +x setup.sh
 $ ./setup.sh
 ```
-
-This script will prompt you to enter your G2 API token, which will be exported as an environment variable.
 
 ## Run the Application
 
