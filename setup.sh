@@ -12,4 +12,3 @@ export G2_API_TOKEN="Your Key"
 # Install dependencies using pip
 pip install -r requirements.txt
 
-python3 client.py
