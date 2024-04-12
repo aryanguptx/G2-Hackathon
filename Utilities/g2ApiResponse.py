@@ -4,7 +4,7 @@ import json
 
 api_token = os.getenv('G2_API_TOKEN')
 
-print(api_token)
+
 if not api_token:
     raise ValueError("API token not found. Make sure 'G2_API_TOKEN' environment penis variable is set.")
 
@@ -32,6 +32,8 @@ def save_response_to_json(data, output_file):
         json.dump(data, f, indent=4)
 
 def process_api_requests(url, headers, params, output_file):
+    with open(output_file, 'w') as f:
+        f.write('')
     while True:
         response = requests.get(url=url, headers=headers, params=params)
         if response.status_code == 200:
@@ -50,9 +52,19 @@ def process_api_requests(url, headers, params, output_file):
             break
     with open(output_file, 'a') as f:
         f.write(']')
-        print(f"Response data saved to '{output_file}' successfully.")
+
 
 def getAnswers(filepath):
+    """
+       Extract comment answers and secondary answers from a JSON file.
+
+       Args:
+           filepath (str): The path to the JSON file containing survey responses.
+
+       Returns:
+           tuple: A tuple containing two dictionaries: comment_answers_dict and secondary_answers_dict.
+                  Each dictionary contains survey answers grouped by question ID.
+       """
     comment_answers_dict={}
     secondary_answers_dict={}
 
@@ -73,10 +85,20 @@ def getAnswers(filepath):
                 if key not in secondary_answers_dict:
                     secondary_answers_dict[key]=[]
                 secondary_answers_dict[key].append(secondary_answers.get(key).get("value"))
-    return [comment_answers_dict,secondary_answers_dict]
+    return [comment_answers_dict, secondary_answers_dict]
 
 
 def getReviewResults(filepath):
+    """
+    Retrieve survey responses from the G2 API and extract comment and secondary answers.
+
+    Args:
+        filepath (str): The path to save the JSON file containing survey responses.
+
+    Returns:
+        tuple: A tuple containing two dictionaries: comment_answers_dict and secondary_answers_dict.
+               Each dictionary contains survey answers grouped by question ID.
+    """
     url = 'https://data.g2.com/api/v1/survey-responses/'
     headers = {
         'Authorization': f"Token token={api_token}",

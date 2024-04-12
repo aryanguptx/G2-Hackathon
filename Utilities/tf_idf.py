@@ -5,17 +5,27 @@ import numpy as np
 
 
 def preprocess_text(text):
-    #To be done using nltk
     return text.lower().split()
 
 
 def compute_tfidf_keywords(keywords, corpus, top_n=5):
-    #Computes the TF-IDF scores for a given set of keywords within a corpus of reviews.
+    """
+        Computes the TF-IDF scores for a given set of keywords within a corpus of reviews.
 
+        Args:
+            keywords (list): A list of strings representing keywords to compute TF-IDF scores for.
+            corpus (list): A list of strings representing reviews in the corpus.
+            top_n (int, optional): The number of top keywords to return with the highest TF-IDF scores. Defaults to 5.
+
+        Returns:
+            list: A list of top keywords with the highest TF-IDF scores.
+        """
+    unique_keywords = list(set(keywords))
     tfidf_vectorizer = TfidfVectorizer(
         tokenizer=preprocess_text,
         stop_words='english',
-        vocabulary=keywords  # Restrict vocabulary to keywords
+        vocabulary=unique_keywords,  # Restrict vocabulary to keywords
+        token_pattern=None
     )
 
     pipeline = make_pipeline(
