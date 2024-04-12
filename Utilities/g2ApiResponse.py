@@ -6,7 +6,7 @@ api_token = os.getenv('G2_API_TOKEN')
 
 
 if not api_token:
-    raise ValueError("API token not found. Make sure 'G2_API_TOKEN' environment penis variable is set.")
+    raise ValueError("API token not found. Make sure 'G2_API_TOKEN' environment variable is set.")
 
 def find_last_submitted_at_value(data):
     submitted_at_values = []
